@@ -1,8 +1,12 @@
-describe('movies function tests',() => {
-    it('should return list of movies', async() =>{
-        const { body, status } = await global.testRequest.get('/movies');
-        expect(status).toBe(200);
-        expect(body).toEqual([
+import { Controller, Get } from "@overnightjs/core";
+import { Request, Response } from "express";
+
+@Controller('movies')
+export class MovieController {
+    
+    @Get('')
+    public getMovieForLoggedUser(_: Request, res: Response): void{
+        res.send([
             {
                 "id": "1",
                 "title": "School of the rock",
@@ -15,6 +19,6 @@ describe('movies function tests',() => {
                 "overview": "In Venice Beach, naive Midwesterner JB bonds with local slacker KG and they form the rock band Tenacious D. Setting out to become the world's greatest band is no easy feat, so they set out to steal what could be the answer to their prayers... a magical guitar pick housed in a rock-and-roll museum some 300 miles away.",
                 "image": "https://image.tmdb.org/t/p/w500/hdEEpy2IgUKt45Y8uopmNWg9TN.jpg"
             },
-        ]);
-    });
-});
+        ])
+    }
+}
