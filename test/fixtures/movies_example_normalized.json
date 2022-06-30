@@ -1,0 +1,25 @@
+{
+  "backdrop_path": "/pM1CnP0ZN2VxmrTAbBZOS3PNoNE.jpg",
+  "genres": [
+    {
+      "id": 35,
+      "name": "Comédia"
+    },
+    {
+      "id": 10402,
+      "name": "Música"
+    },
+    {
+      "id": 10751,
+      "name": "Família"
+    }
+  ],
+  "id": 1584,
+  "original_language": "en",
+  "original_title": "School of Rock",
+  "overview": "Dewey Finn (Jack Black) é um músico que acaba de ser demitido de sua banda. Cheio de dívidas para pagar e sem ter o que fazer, ele aceita dar aulas como professor substituto em uma escola particular de disciplina rígida. Logo Dewey se torna um exemplo para seus alunos, sendo que alguns deles se juntam ao professor para montar uma banda local, sem o conhecimento de seus pais.",
+  "popularity": 18.701,
+  "poster_path": "/z1GIHdLpkbzDvhjPROXbqlQRoGm.jpg",
+  "release_date": "2003-10-03",
+  "title": "Escola de Rock"
+}
