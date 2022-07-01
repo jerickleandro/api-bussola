@@ -1,3 +1,4 @@
+import { InternalError } from "@src/util/errors/internal-error";
 import { AxiosStatic } from "axios";
 
 export interface GenreMovie{
@@ -62,14 +63,31 @@ export interface MovieNormalized {
     title: string;
 }
 
+export class ClientRequestError extends InternalError {
+    constructor(message: string){
+        const internalError = 'Unexpected erro when trying to comunicate to Tmdb';
+        super(`${internalError}: ${message}`);
+    }
+}
+
 export class Tmdb {
     constructor(protected request: AxiosStatic){
 
     }
 
     public async fetchMovie(idMovie: number): Promise<MovieNormalized> {
-        const response = await this.request.get<TmdbMovieResponse>(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=d54c84d18e40a8f2e4ea46b0055430a9&language=pt-BR`);
+        try{
+        const response = await this.request.get<TmdbMovieResponse>(`https://api.themoviedb.org/3/movie/${idMovie}?api_key=d54c84d18e40a8f2e4ea46b0055430a9&language=pt-BR`, 
+            {
+                headers: {
+                    Autorization: 'fake-token',
+                }
+            }
+        );
         return this.normalizeResponse(response.data);
+        }catch (err){
+           throw new ClientRequestError((err as { message: any }).message)
+        }
     }
 
     private normalizeResponse = (movie: TmdbMovieResponse): MovieNormalized => {
